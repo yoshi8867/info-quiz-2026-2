@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>정보 과목 2학기 퀴즈</title>
+<style>
+  :root{ --bg:#f4f2ee; --card:#fff; --edge:#ddd8cf; --rule:#ebe6dd;
+         --ink:#2b2723; --dim:#8a8078; --hi:#b4553a; --ex:#f0ece3; }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --bg:#17161a; --card:#232128; --edge:#38343d; --rule:#2c2932;
+    --ink:#ece8e3; --dim:#8c8590; --hi:#e08a6b; --ex:#2a2731; } }
+  :root[data-theme="dark"]{
+    --bg:#17161a; --card:#232128; --edge:#38343d; --rule:#2c2932;
+    --ink:#ece8e3; --dim:#8c8590; --hi:#e08a6b; --ex:#2a2731; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Pretendard","Malgun Gothic",system-ui,sans-serif;
+    display:flex;flex-direction:column;align-items:center;gap:26px;
+    padding:44px 16px 70px}
+  header{text-align:center;max-width:56ch}
+  p{margin:0;font-size:14.5px;line-height:1.8;color:var(--dim)}
+  .mono{font-family:"D2Coding","Cascadia Mono","Consolas",monospace}
+  .q{color:var(--hi);font-weight:700}
+  footer{font-size:13px;color:var(--dim)}
+
+ .box{background:var(--card);border:1px solid var(--edge);border-radius:12px;
+   padding:34px 40px;text-align:center;max-width:46ch}
+ .t{font-size:22px;font-weight:700;letter-spacing:.02em}
+ .s{margin-top:10px;font-size:13px;color:var(--dim);letter-spacing:.18em}
+ ol{margin:22px 0 0;padding-left:20px;text-align:left;font-size:13.5px;
+   color:var(--dim);line-height:2}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="t">정보 과목 2학기 퀴즈</div>
+  <div class="s">용산고등학교</div>
+  <ol>
+    <li>받은 종이에 <b>팀코드</b>가 적혀 있다. 끝까지 같은 것을 쓴다.</li>
+    <li>장소에 붙은 QR 을 태블릿으로 찍는다.</li>
+    <li><b>입장코드</b>를 넣으면 그 자리의 문제가 열린다.</li>
+    <li>맞히면 다음 장소와 그곳의 입장코드를 알려 준다.</li>
+  </ol>
+</div>
+<footer>이 화면에서는 아무것도 열리지 않는다. QR 부터 찍으라.</footer>
+</body>
+</html>

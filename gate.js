@@ -93,11 +93,16 @@
   }
 
   /* ── 연결 ── */
+  /* 첫 방은 입장코드가 없다 — 팀코드만 넣고 시작한다 */
+  var NOENTRY = !!DATA.noentry;
+  if (NOENTRY) $("code").parentNode.hidden = true;
+
   $("enter").addEventListener("click", function () {
     $("gmsg").textContent = "";
     var team = Y.normCode($("team").value);
-    var code = Y.normCode($("code").value);
-    if (!team || !code) { $("gmsg").textContent = "둘 다 넣어야 한다."; return; }
+    var code = NOENTRY ? "" : Y.normCode($("code").value);
+    if (!team) { $("gmsg").textContent = "팀코드를 넣어야 한다."; return; }
+    if (!NOENTRY && !code) { $("gmsg").textContent = "입장코드를 넣어야 한다."; return; }
     tryEnter(team, code, false);
   });
 
@@ -117,11 +122,13 @@
 
   /* ── 이미 왔던 팀이면 알아서 열어 준다 ── */
   var t = LS.get("ys.team") || "";
-  var c = LS.get("ys.code." + DATA.id) || "";
+  var c = NOENTRY ? "" : (LS.get("ys.code." + DATA.id) || "");
   $("team").value = t;
   $("code").value = c;
-  if (t && c) tryEnter(t, c, true);
-  if (!t) $("team").focus(); else if (!c) $("code").focus();
+  if (t && (c || NOENTRY)) tryEnter(t, c, true);
+  if (!t) $("team").focus(); else if (!c && !NOENTRY) $("code").focus();
 
-  foot.textContent = "팀코드는 이 태블릿에 기억된다. 입장코드는 팀마다 다르다.";
+  foot.textContent = NOENTRY
+    ? "팀코드는 이 태블릿에 기억된다. 다음 장소부터는 입장코드가 필요하다."
+    : "팀코드는 이 태블릿에 기억된다. 입장코드는 팀마다 다르다.";
 })();

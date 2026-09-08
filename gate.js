@@ -24,6 +24,17 @@
   function show(el) { el.hidden = false; }
   function hide(el) { el.hidden = true; }
 
+  /* innerHTML 로 넣은 <script> 는 그냥은 안 돈다. 새로 만들어 붙여야 실행된다.
+     (카이사르 원판처럼 손으로 만지는 퍼즐이 여기에 들어 있다) */
+  function runScripts(host) {
+    var got = host.querySelectorAll("script");
+    for (var i = 0; i < got.length; i++) {
+      var old = got[i], now = document.createElement("script");
+      if (old.src) now.src = old.src; else now.text = old.textContent;
+      old.parentNode.replaceChild(now, old);
+    }
+  }
+
   var gate = $("gate"), puzzle = $("puzzle"), answer = $("answer"),
       solved = $("solved"), foot = $("foot");
 
@@ -40,6 +51,7 @@
 
   function reveal(html) {
     solved.innerHTML = html;
+    runScripts(solved);
     show(solved);
     hide(answer);
     rememberCodes(html);
@@ -74,6 +86,7 @@
     }
 
     puzzle.innerHTML = Y.open(DATA.body, pkey, "body|" + DATA.id) || "";
+    runScripts(puzzle);
     show(puzzle);
     hide(gate);
     LS.set("ys.team", team);
